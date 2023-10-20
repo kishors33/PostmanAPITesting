@@ -25,16 +25,30 @@ jobs:
           npm install -g newman-reporter-htmlextra
 
 
+      # Install the newman-run to run multiple json files at one go
+      - name: Install newman-run
+        run: |
+          npm install -g newman-run
+
+
       # Make directory to upload the test results
       - name: Make Directory for results
         run: mkdir -p testResults
 
 
       # Run the POSTMAN collection
+      # - name: Run POSTMAN collection
+      #  run: |
+      #   newman run "Regression testing.postman_collection.json" "GoRestAPITesting_Working.postman_collection.json" -e "GoRestAPITestingEnv.postman_environment.json" -r htmlextra --reporter-htmlextra-export testResults/htmlreport.html --reporter-htmlextra-darkTheme  > testResults/runreport1.html
+
+          
+      # Run the POSTMAN collection
       - name: Run POSTMAN collection
         run: |
-          newman run "Regression testing.postman_collection.json" "GoRestAPITesting_Working.postman_collection.json" -e "GoRestAPITestingEnv.postman_environment.json" -r htmlextra --reporter-htmlextra-export testResults/htmlreport.html --reporter-htmlextra-darkTheme  > testResults/runreport1.html
-          
+          newman-run -f "FeedFile.json" -r htmlextra --reporter-htmlextra-export testResults/htmlreport.html --reporter-htmlextra-darkTheme  > testResults/runreport1.html
+
+
+
 
 
       # Upload the contents of Test Results directory to workspace

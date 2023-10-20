@@ -1,0 +1,11 @@
+{
+    "runs":[
+        {
+            "collection": "./GoRestAPITesting_Working.postman_collection.json",
+            "environment": "./GoRestAPITestingEnv.postman_environment.json"
+        },
+        {
+            "collection": "./Regression testing.postman_collection.json"
+        }
+    ]
+}
